@@ -1,0 +1,141 @@
+    1  exit
+    2  ll
+    3  dir
+    4  lab
+    5  ll
+    6  lab
+    7  time
+    8  date
+    9  lab container -review start
+   10  lab container -rootless start
+   11  exit
+   12  ll
+   13  git config --global credential.helper cache
+   14  git
+   15  lab-configure
+   16  git clone https://github.com/okilian/DO180-apps
+   17  ll
+   18  cd DO180-apps/
+   19  ll
+   20  git status
+   21  git checkout -b testbranch
+   22  echo "DO180" > TEST
+   23  git add .
+   24  git commit -m "DO180"
+   25  git push --set-upstream origin testbranch
+   26  echo "OCP4" > TEST
+   27  git add .
+   28  git commit -m "OCP4"
+   29  git push
+   30  head README.md 
+   31  podman search rhel
+   32  podman pull rhel
+   33  podman image
+   34  podman images
+   35  podman pull ngnix
+   36  podman pull nginx
+   37  podman run ubi8/ubi:8.3 echo 'hallo'
+   38  postman ikmages
+   39  postman images
+   40  podman images
+   41  podman pull -name ubi ubi8/ubi:latest
+   42  podman pull -name ubi ubi:latest
+   43  podman run -d --name ubi ubi:latest
+   44  podman pull ubi:latest
+   45  podman pull ubi/ubi:latest
+   46  podman run -d --name ubi ubi8/ubi:8.3 
+   47  podman ps
+   48  podman run -d -p 8080 registry.redhat.io/rhel8/httpd-24
+   49  podman run ubi8/ubi:8.3 echo 'hallo'
+   50  podman run -d ubi8/ubi:8.3 
+   51  podman ps
+   52  podman images
+   53  podman ps
+   54  podman run -d ubi8/ubi:8.3 
+   55  docker ps
+   56  podman ps
+   57  podman run -d -p 8080 registry.redhat.io/rhel8/httpd-24
+   58  podman images
+   59  podman delete
+   60  podman del
+   61  podman run -d ubi8/ubi:8.3  /bin/bash
+   62  podman ps
+   63  podman logs
+   64  podman ps -a
+   65  podman logs registry.access.redhat.com/ubi8/ubi:8.3 
+   66  podman logs registry.access.redhat.com/ubi8/ubi:8.3 podman ps
+   67  podman logs registry.access.redhat.com/ubi8/ubi:8.3 podman images
+   68  podman run ubi8/ubi:8.3 echo 'hallo'
+   69  podman ps 
+   70  podman images
+   71  podman ps -aq
+   72  ipconfig -a
+   73  ifconfig -a
+   74  lab container-create start
+   75  podman login registry.redhat.io
+   76  podman run --name mysql-basic -e MYSQL_USER=user1 -e MYSQL_PASSWORD=mypa55 -e MYSQL_DATABASE=items -e MYSQL_ROOT_PASSWORD=r00tpa55 -d registry.redhat.io/rhel8/mysql-80:1
+   77  podman ps
+   78  podman ps --format "{{.ID}} {{.Image}} {{.Names}}"
+   79  podman exec -it mysql-basic /bin/bash
+   80  ps auxww | grep -i my
+   81  lab container-create finish
+   82  lab container-rootless start
+   83  sudo podman run --rm --name asroot -it  registry.access.redhat.com/ubi8:latest /bin/bash
+   84  lab container-rootless finish
+   85  lab container-review start
+   86  lab container-review grade
+   87  lab container-review finish
+   88  lab container-review start
+   89  sudo podman run -d --name httpd-basic -p 8080:80 quay.io/redhattraining/httpd-parent:2.4
+   90  curl http://localhost:8080
+   91  podman -it httpd-basic /bin/bash
+   92  podman exec -it httpd-basic /bin/bash
+   93  podman ps
+   94  curl http://localhost:8080
+   95  podman ps
+   96  podman images
+   97  curl http://localhost:8080
+   98  sudo podman exec -it httpd-basic /bin/bash
+   99  curl http://localhost:8080
+  100  lab container-review grade
+  101   podman run -d --name httpd-basic -p 8080:80 quay.io/redhattraining/httpd-parent:2.4
+  102  lab container-review grade
+  103  lab container-review finish
+  104  lab manage-lifecycle start
+  105  podman login registry.redhat.io
+  106  podman run --name mysql-db registry.redhat.io/rhel8/mysql-80:1
+  107  podman logs mysql-db 
+  108  podman run --name mysql -e MYSQL_USER=user1 -e MYSQL_PASSWORD=mypa55 -e MYSQL_DATABASE=items -e MYSQL_ROOT_PASSWORD=r00tpa55 -d registry.redhat.io/rhel8/mysql-80:1
+  109  podman ps
+  110  ll
+  111  podman cp  ~/DO180/labs/manage-lifecycle/db.sql mysql:/
+  112  podman exec mysql /bin/bash -c 'mysql -uuser1 -pmypa55 items < /db.sql'
+  113  podman run --name mysql-2 -it registry.redhat.io/rhel8/mysql-80:1 /bin/bash
+  114  podman ps -a
+  115  podman exec mysql /bin/bash -c 'mysql -uuser1 -pmypa55 -e "select * from items.Projects;"'
+  116  lab manage-lifecycle finisch
+  117  lab manage-lifecycle finish
+  118  history
+  119  history | less
+  120  podman run -d --name apache1 -p 8080:8080 registry.redhat.io/rhel8/httpd-24
+  121  history | grep login
+  122  podman login registry.redhat.io
+  123  podman run -d --name apache1 -p 8080:8080 registry.redhat.io/rhel8/httpd-24
+  124  podman run -d --name apache2 -p 127.0.0.1:8081:8080 registry.redhat.io/rhel8/httpd-24
+  125  podman run -d --name apache3 -p 127.0.0.1::8080 registry.redhat.io/rhel8/httpd-24
+  126  podman port apache3
+  127  curl -s 127.0.0.1:37415 | egrep '</?title>'
+  128  podman run -d --name apache4 -p 8080 registry.redhat.io/rhel8/httpd-24
+  129  podman port apache4
+  130  podman ps
+  131  podman ps -aq
+  132  podman stop $(podman ps -aq)
+  133  podman ps
+  134  podman rm $(podman ps -aq)
+  135  podman rmi $(podman ps -aq)
+  136  mysql
+  137  pwd
+  138  ll
+  139  cd DO180-apps/
+  140  ll
+  141  history > ./his1
